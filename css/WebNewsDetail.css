@@ -315,13 +315,14 @@ body {  }
 
 /* author introduction */
 #author-introduction {
+    width: 100%;
     display: none;
     float: left;
     border-bottom: 10px solid rgb(240,239,246);
 
     -webkit-user-select: none;
             user-select: none;
-    height: 255px;
+    overflow: hidden;
 }
 #author-introduction .left {
     float: left;
