@@ -404,7 +404,7 @@ define ([
 			if (respones.status == '1') {
 
 				$('#author-introduction').css('display', 'block');
-				$('#author-introduction .right').css('width', '93%'); // fixbug
+				$('#author-introduction .right').css('width', '100%'); // fixbug
 				authorIntroductionr.setAttribute('data-columnid', respones.authorList[0].columnid);
 				authorIntroductionr.querySelector('.left .name').innerHTML = respones.authorList[0].name;
 				authorIntroductionr.querySelector('.left .info').innerHTML = respones.authorList[0].position;

@@ -326,7 +326,7 @@ body {  }
 }
 #author-introduction .left {
     float: left;
-    width: 30%;
+    width: 100px;
     text-align: center;
     padding: 2%;
     margin: 2%;
@@ -362,7 +362,7 @@ body {  }
             text-overflow: ellipsis;
     font-size: 14px;
     color: gray;
-    width: 60%;
+    width: 66%;
 }
 
 #tags-list {
