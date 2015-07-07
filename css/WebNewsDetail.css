@@ -321,6 +321,7 @@ body {  }
 
     -webkit-user-select: none;
             user-select: none;
+    height: 255px;
 }
 #author-introduction .left {
     float: left;
