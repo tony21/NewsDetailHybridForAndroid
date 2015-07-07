@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="css/WebNewsDetail.css">
+    <script src="js/libs/require.js"></script>
+    <script>
+ 		// require js config
+		require.config({
+		    'paths': {
+		        jquery:     'js/libs/jquery',
+		        fastclick:  'js/libs/fastclick',
+		        // lazyImages: 'js/libs/dataLazy',
+		        bridge: 'js/bridge',
+		        detailContent: 'js/detailContent',
+		    },
+		    'shim': { }
+		});
+		// initialize
+		require(['js/NewsDetailView'], function (NewsDetailView) {
+		    NewsDetailView.init();
+		});
+
+
+
+    </script>
+</head>
+<body>
+<!-- test 
+<div id='buttons'></div> <div id='log'></div>
+-->
+
+<section id="view-newsDetail">
+    <div class="content" style="font-size: 16px;">
+        <div class="bd"></div>
+    </div>
+</section>
+
+<section id="content-footer">
+    <div class="source-link-btn"><a href="http://www.biketo.com/mobile/#index"><i class="icon"></i> 本文来源</a></div>
+    <div class="source-favor-btn"><a href="javascript:;"><span>喜欢</span> <i class="icon"></i> </a></div>
+</section>
+
+<section id="tags-list">
+    <div class="column-title">标签</div>
+    <ul class="list"></ul>
+</section>
+
+<section id="author-introduction">
+    <div class="column-title">作者</div>
+    <div class="left">
+        <div class="avatar"><img width="70%" height="70%" src="img/placeholder@3x.png" alt="林俊颐"></div>
+        <div class="name">1</div>
+        <div class="info">2</div>
+    </div>
+    <div class="right">
+        <p>简介：从8年前到现在都在各大车店做兼职技师，专门治疗自行车的重大疾病和技术疑难解答，入门级车友的专业导师。自幼参加广州市内各大自行车赛事，有着丰富的骑行经验，无奈因伤患退出赛事行列，现用心培养年轻一辈成为高级车手。自己私下专研各种自行车原理和结构，能专业改装及维护各类自行车零部件，达到专业级的要求。</p>
+    </div>
+</section>
+
+
+<section id="recommend-list">
+    <div class="column-title">相关文章</div>
+    <ul class="list"></ul>
+</section>
+
+<script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+</body>
+</html>
