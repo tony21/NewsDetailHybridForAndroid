@@ -302,10 +302,13 @@ define ([
 
 	// 返回 总的高度
 	var containerHeight = function() {
+
 		var detailContentHeight = document.querySelector('#view-newsDetail').clientHeight;
-		var recommendListHeight = recommendContainer.clientHeight +10;
+		var recommendListHeight = 226 +22;
 		var contentFooterContainerHeight = 80;
-		var height = detailContentHeight + recommendListHeight + contentFooterContainerHeight;
+		var authorIntroductionrHeight = authorIntroductionr.clientHeight +10;
+		var tagsListContainerHeight = tagsListContainer.clientHeight +10;
+		var height = detailContentHeight + recommendListHeight + contentFooterContainerHeight + authorIntroductionrHeight + tagsListContainerHeight;
 		return height
 	}
 
