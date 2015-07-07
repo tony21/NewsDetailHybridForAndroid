@@ -94,7 +94,7 @@ define ([
 				try{
 					window.ANDROID.didClickArticleTagOnTagIdFromWebView( JSON.stringify({'tagid': tagid, 'tagname': tagname}) );
 				}catch(error){
-					console.log('tagid: '+tagid, 'tagname: '+tagname)
+					console.log('tagid: '+tagid, 'tagname 1: '+tagname)
 				}
 				
 			}
