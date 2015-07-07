@@ -302,13 +302,10 @@ define ([
 
 	// 返回 总的高度
 	var containerHeight = function() {
-
 		var detailContentHeight = document.querySelector('#view-newsDetail').clientHeight;
-		var recommendListHeight = 226 +22;
+		var recommendListHeight = recommendContainer.clientHeight +10;
 		var contentFooterContainerHeight = 80;
-		var authorIntroductionrHeight = authorIntroductionr.clientHeight +10;
-		var tagsListContainerHeight = tagsListContainer.clientHeight +10;
-		var height = detailContentHeight + recommendListHeight + contentFooterContainerHeight + authorIntroductionrHeight + tagsListContainerHeight;
+		var height = detailContentHeight + recommendListHeight + contentFooterContainerHeight;
 		return height
 	}
 
@@ -501,34 +498,43 @@ define ([
 
 		// 接收来自android的回调
 		window.newsDetailInit = function(data) {
-			var detailsObj = data.details;
-			var fontSize = data.fontSize;
-			screenWidth = data.screenWidth;
-			screenHeight = data.screenHeight;
-			isCelluarTelephone = data.isCelluarTelephone;
-			isArticleFavored = data.isArticleFavored;
+			
+			fontSize = data.fontSize;                     // 原生中设置的字体大小
+			screenWidth = data.screenWidth;               // 设备宽度
+			screenHeight = data.screenHeight;             // 设备高度
+			isCelluarTelephone = data.isCelluarTelephone; // 是否开启省流量模式 (在应用中我的设置中)
+			isArticleFavored = data.isArticleFavored;     // 是否已经收藏 （通过匹配 NSUserDefault中存储数据判断）
 
-			 // details object
+			// details object
+	        var detailsObj = data.html.details;
+	                           
 			fromurl = detailsObj.fromurl;
-			aid = detailsObj.id;
+			aid     = detailsObj.id;
 			classid = detailsObj.classid;
 			diggtop = detailsObj.diggtop;
 
 			// 渲染html
 			render(detailsObj);
 
-			// 熏染相关文章列表
+			// 渲染相关文章列表
 			renderRecommendList(detailsObj.classid);
 
 			// 底部 与 喜欢 
 			contentFooter();
+            
+            // 作者介绍
+			authorIntroductionList(detailsObj.classid, detailsObj.id);
+            
+            // 标签列表
+			tagsList(detailsObj.id);
 
 			// 设置字体大小
 			setContainerFontSize(fontSize);
 
-			// 显示底部和推荐文章列表
-			$('#content-footer').css('visibility', 'visible');
-			$('#recommend-list').css('visibility', 'visible');
+			// 请求拿到数据结果后才显示，（否则在请求过程中会显示空的栏目）
+			$(contentFooterContainer).css('visibility', 'visible');
+			$(recommendContainer).css('visibility', 'visible');
+			$(tagsListContainer).css('visibility', 'visible');
 		}
 		
 		window.refreshArticleFavorStatus = function (data) {
