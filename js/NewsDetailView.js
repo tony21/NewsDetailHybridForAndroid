@@ -67,9 +67,22 @@ define ([
 
 				var imgAll = $('section img');
 				var json = {};
+				var imagesList = [];
+				var currentImage;
+
 				imgAll.each(function(){
-					// console.log(this.src, '当前：' src)
+					imagesList.push(this.src);
 				})
+
+				json.imagesList = imagesList;
+				json.currentImage = me[0].src;
+
+				try{
+					window.ANDROID.didClickArticleImgFromWebView( JSON.stringify({'imagesList': json.imagesList, 'currentImage': json.currentImage}) );
+				}catch(error){
+					console.log('imagesList: ' +json.imagesList, 'currentImage: '+ json.currentImage)
+				}
+
 			}
 
 			// 点击超链接
@@ -80,9 +93,13 @@ define ([
 				var liksResultJson = getLiksIdAndType(src);
 
 				if (liksResultJson.type == 'bbs' || liksResultJson.type == 'news' || liksResultJson.type == 'default') {
-					Bridge.connect(function(bridge){
-						bridge.callHandler('delegateUIWebViewOnClikEvent', {'result': liksResultJson})			
-					});
+
+					try{
+						window.ANDROID.delegateUIWebViewOnClikEvent( JSON.stringify({'result': liksResultJson}) );
+					}catch(error){
+						console.log('tagid: '+tagid, 'tagname 1: '+tagname)
+					}
+
 				}
 			}
 
@@ -320,7 +337,6 @@ define ([
 			console.log('更新高度')
 		}
 		
-
 		console.log('js_log更新高度', containerHeight());
 	}
 
@@ -416,9 +432,11 @@ define ([
 			var columnid = authorIntroductionr.getAttribute('data-columnid');
 			if (!columnid) return;
 
-			Bridge.connect(function(bridge){
-				bridge.callHandler('didClickArticleAuthorIntroFromWebView', { 'columnid': columnid ,'authorname': authorname })			
-			});
+			try{
+				window.ANDROID.didClickArticleAuthorIntroFromWebView( JSON.stringify({'columnid': columnid, 'authorname': authorname}) );
+			}catch(error){
+				console.log('columnid: ' +columnid, 'authorname: '+authorname)
+			}
 		}
 
 	}
@@ -459,7 +477,7 @@ define ([
 
 		if (enableDebug) {
 
-			DetailContent.init({'aid': '23267', 'classid': '1'}); // 每日一图
+			DetailContent.init({'aid': '23038', 'classid': '1'}); // 每日一图
 
 			var fontSize = '16';
 
@@ -496,7 +514,6 @@ define ([
 
 			return false;
 		}
-
 
 		// 接收来自android的回调
 		window.newsDetailInit = function(data) {
